@@ -19,18 +19,7 @@ modalClose.addEventListener('click', () => {
     modal.classList.remove('show-modal');
 })
 
-
-
-
-
-// function hideModal() {
-//     modal.classList.remove("show-modal");
-// }
-
-
-// addBookmark.addEventListener('click', ()=> {
-//     showModal();
-// })
-// closeModal.addEventListener('click', () => {
-//     hideModal()
-// })
+window.addEventListener('click', (e) => {
+    // console.log(e.target.id)
+    e.target === modal ? modal.classList.remove('show-modal'): false;
+})  
