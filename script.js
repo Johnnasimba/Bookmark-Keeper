@@ -6,6 +6,9 @@ const websiteNameEl = document.getElementById('website-name');
 const websiteUrlEl = document.getElementById('website-url');
 const bookmarksContainer = document.getElementById('bookmark-container');
 
+
+let bookmarks = [];
+
 // Validate form
 function validate(nameValue, urlValue) {
     const expression =/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
@@ -41,6 +44,23 @@ modalClose.addEventListener('click', () => {
 window.addEventListener('click', (e) => {
     e.target === modal ? modal.classList.remove('show-modal'): false;
 }) 
+// Fetch bookmark from localStorage
+function fetchBookmark() {
+    // Get bookmarks from localStorage if available
+    if (localStorage.getItem('bookmarks')) {
+        bookmarks = JSON.parse(localStorage.getItem('bookmarks')); 
+    } else {
+        // Create a bookmarks array in localStorage
+        bookmarks = [
+            {
+                name: 'John Nasimba',
+                url: 'https://www.linkedin.com/in/john-nasimba/'
+            }
+        ]
+    }
+    console.log(bookmarks);
+}
+
 
 // Handle data from form
 
@@ -55,10 +75,21 @@ function storeBookmark(e) {
    
     if (!validate(nameValue, urlValue)) {
       return false
-    } else {
-        console.log(nameValue, urlValue); 
-  }
+    } 
+    const bookmark = {
+        name: nameValue,
+        url: urlValue,
+    };
+    bookmarks.push(bookmark);
+    console.log(bookmarks);
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    fetchBookmark();
+    bookmarkForm.reset();
+    websiteNameEl.focus();
 }
 
 // Event Listener
 bookmarkForm.addEventListener('submit', storeBookmark)
+
+// On Load, Fetch Bookmarks
+fetchBookmark();
