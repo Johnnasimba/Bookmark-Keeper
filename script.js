@@ -79,8 +79,8 @@ function fetchBookmarks() {
     // Create bookmarks array in localStorage
     bookmarks = [
       {
-        name: 'Jacinto Design',
-        url: 'http://jacinto.design',
+        name: 'John Nasimba',
+        url: 'https://www.linkedin.com/in/john-nasimba/',
       },
     ];
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
