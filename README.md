@@ -1,0 +1,1 @@
+This website allows users to create and save bookmarks from any website. These bookmarks are saved locally and are accessible at any time.  The user can open any website by clicking its bookmark. There is also an option to add a new bookmark or delete an old one. This website is responsive such that it works on any device.
